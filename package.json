@@ -1,0 +1,14 @@
+{
+  // ... existing dependencies ...
+  "dependencies": {
+    // ... keep existing ...
+    "@ipld/dag-ucan": "^3.0.0",
+    "crypto-js": "^4.2.0",
+    "did-jwt": "^7.0.0",
+    "did-resolver": "^4.1.0",
+    "hypercore": "^10.0.0",
+    "idb": "^7.1.1",
+    "key-did-resolver": "^3.0.0",
+    "uint8arrays": "^4.0.0"
+  }
+}
