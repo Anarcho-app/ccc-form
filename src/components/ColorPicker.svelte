@@ -2,7 +2,7 @@
   import { COLORS } from '../constants/formData'
   import { createEventDispatcher } from 'svelte'
   
-  let { phenotype } = $props()
+  export let phenotype
   const dispatch = createEventDispatcher()
 
   function handleChange(event) {

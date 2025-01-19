@@ -1,12 +1,10 @@
 <script>
-  const { 
-    checked = false, 
-    color = '#888', 
-    value, 
-    label, 
-    onChange, 
-    type = 'checkbox' 
-  } = $props();
+  export let checked = false;
+  export let color = '#888';
+  export let value = undefined;
+  export let label = '';
+  export let onChange = () => {};
+  export let type = 'checkbox';
 </script>
 
 <label class="flex items-center mb-2 cursor-pointer hover:bg-gray-50 p-1 rounded">

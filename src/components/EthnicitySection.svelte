@@ -2,20 +2,18 @@
   import SharedCheckbox from './SharedCheckbox.svelte';
   import { createEventDispatcher } from 'svelte';
   
-  const {
-    title = '',
-    options = [],
-    phenotype = '#888',
-    isArray = true,
-    key = '',
-    selectedValues = [],
-    otherChecked = false,
-    otherValue = ''
-  } = $props();
+  export let title = '';
+  export let options = [];
+  export let phenotype = '#888';
+  export let isArray = true;
+  export let key = '';
+  export let selectedValues = [];
+  export let otherChecked = false;
+  export let otherValue = '';
 
-  let isOpen = $state(false);
+  let isOpen = false;
   const dispatch = createEventDispatcher();
-  const sectionId = $derived(`section-${key}`);
+  const sectionId = `section-${key}`;
 
   function handleCheckboxChange(value) {
     if (!isArray) return;
@@ -39,11 +37,11 @@
   }
 </script>
 
-<div class="border border-gray-200 rounded-md">
+<div class="border border-gray-200 rounded-lg shadow-sm">
   <button
     type="button"
     on:click={() => isOpen = !isOpen}
-    class="w-full text-left p-4 flex justify-between items-center text-white transition-colors"
+    class="w-full text-left p-4 flex justify-between items-center text-white transition-colors rounded-t-lg"
     style="background: {phenotype}"
     aria-expanded={isOpen}
     aria-controls={sectionId}
@@ -61,7 +59,7 @@
   </button>
   
   {#if isOpen}
-    <div class="p-4 border-t border-gray-200" id={sectionId}>
+    <div class="p-4 space-y-2" id={sectionId}>
       {#each options as option (option.value)}
         <SharedCheckbox
           checked={selectedValues.includes(option.value)}
@@ -84,8 +82,8 @@
           type="text"
           value={otherValue}
           on:input={handleOtherValueChange}
-          class="phenotype-input"
-          style="--phenotype: {phenotype}"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-opacity-50 transition-shadow"
+          style="--phenotype: {phenotype}; focus-ring-color: {phenotype}"
           placeholder={`Specify other ${key} ethnicity`}
         />
       {/if}
@@ -98,17 +96,7 @@
     text-shadow: 1px 1px #000;
   }
 
-  .phenotype-input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    margin-top: 0.5rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  .phenotype-input:focus,
-  .phenotype-input:focus-visible {
+  input:focus {
     outline: none;
     border-color: var(--phenotype);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--phenotype) 30%, transparent);
